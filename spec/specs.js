@@ -15,18 +15,31 @@ describe('Pizza', function() {
 
 describe('Topping', function() {
   it("creates a new topping with topping properties and pizza it's going on", function() {
-    var testPizza = new Pizza("Large", "none");
+    var testPizza = new Pizza("Large", "peppers");
     var testTopping = new Topping(testPizza, "mushrooms", "Vegetable");
     expect(testTopping.pizza).to.equal(testPizza);
     expect(testTopping.name).to.equal("mushrooms");
     expect(testTopping.type).to.equal("Vegetable");
   });
 
-  it("gets the price of a large pizza with sausage", function() {
-    var testPizza = new Pizza("Large", "none");
-    var toppingTwo = new Topping(testPizza, "sausage", "Meat");
-    expect(toppingTwo.getPrice()).to.equal(22.5);
+// TODO: fix bug to calculate price of multiple toppings
+
+  it("gets the price of multiple toppings", function() {
+    var testPizza = new Pizza("Large", "peppers");
+    var toppingOne = new Topping(testPizza, "mushrooms", "Vegetable");
+    var toppingTwo = new Topping(testPizza, "olive", "Vegetable");
+    var toppingThree = new Topping(testPizza, "peppers", "Vegetable");
+    var toppingFour = new Topping(testPizza, "sausage", "Meat");
+    // var toppings;
+    // var allToppings = toppings.push(toppingOne);
+    expect(toppingFour.getAllToppingsPrice()).to.equal(8.5);
   });
+
+  // it("gets the price of a large pizza with sausage", function() {
+  //   var testPizza = new Pizza("Large", "mushrooms");
+  //   var toppingTwo = new Topping(testPizza, "sausage", "Meat");
+  //   expect(toppingTwo.getTotalPrice()).to.equal(22.5);
+  // });
 
   // it("adds the cost of an additional topping", function() {
   //   var testPizza = new Pizza("Large");
