@@ -12,9 +12,33 @@ describe('Pizza', function() {
     expect(testPizza.toppings).to.eql([]);
   });
 
+  it("creates an array with toppings used for a pizza", function() {
+    var testPizza = new Pizza("Large", "mushrooms");
+    var toppingOne = new Topping("olive", "Vegetable");
+    var toppingTwo = new Topping("peppers", "Vegetable");
+    var toppingThree = new Topping("sausage", "Meat");
+    testPizza.toppings.push(toppingOne);
+    testPizza.toppings.push(toppingTwo);
+    testPizza.toppings.push(toppingThree);
+    expect(testPizza.toppings[0].type).to.equal("Vegetable");
+    expect(testPizza.toppings[1].type).to.equal("Vegetable");
+    expect(testPizza.toppings[2].type).to.equal("Meat");
+  });
+
   it("gets the price of a large pizza", function() {
     var testPizza = new Pizza("Large", "mushrooms");
     expect(testPizza.getTotalPrice()).to.equal(20);
+  });
+
+  it("gets total price for a large pizza with mushrooms, olives, and sausage", function() {
+    var testPizza = new Pizza("Large", "mushrooms");
+    var toppingOne = new Topping("olive", "Vegetable");
+    var toppingTwo = new Topping("peppers", "Vegetable");
+    var toppingThree = new Topping("sausage", "Meat");
+    testPizza.toppings.push(toppingOne);
+    testPizza.toppings.push(toppingTwo);
+    testPizza.toppings.push(toppingThree);
+    expect(testPizza.getTotalPrice()).to.equal(26.5);
   });
 
 });
