@@ -64,8 +64,15 @@ Pizza.prototype.getTotalPrice = function() {
 
 
 $(function() {
+
+// FORM#BASE-PIZZA NOT ADDING TOPPING PROPERLY
+// TO-TRY: PUT BASE-PIZZA INTO ON CLICK FUNCTION, SO THAT BASE-PIZZA APPEARS IN ORDER BUT CAN RECEIVE ADDITIONS
+// THEN: ADD SUBMIT BUTTON EVENT TO SUBMIT A PIZZA ORDER?
+
+
   $("form#base-pizza").submit(function(event) {
     event.preventDefault();
+    var toppings = [];
     var sizeInput = $("select#size").val();
     var firstToppingInput = $("select#first-topping").val();
     var newPizza = new Pizza(sizeInput, firstToppingInput);
@@ -75,8 +82,27 @@ $(function() {
 
     $("#show-order").show();
     $("#show-order h2").text(newPizza.size);
-    // $("ul#toppings").text("");
-    $("li#first-topping").text(newPizza.firstTopping);
+    $("ul#toppings").text("");
+    $("ul#toppings").append("<li>" + newPizza.firstTopping + " (Free)</li>")
 
   });
+
+
+  // $("form#add-topping").submit(function() {
+  //   event.preventDefault();
+  //   var toppings = [];
+  //   $("#add-topping").each(function() {
+  //     var additionalToppingInput = $("select#additional-topping").val();
+  //     var topping = new Topping(additionalToppingInput);
+  //     newPizza.toppings.push(topping);
+  //   });
+  //
+  //   $("select#additional-topping").val("");
+  //
+  //   $("ul#toppings").text("");
+  //   newPizza.toppings.forEach(function(topping) {
+  //     $("ul#toppings").append("<li>" + topping.name + "</li>")
+  //   });
+  // });
+
 });
