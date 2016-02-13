@@ -1,9 +1,3 @@
-// Create a website for a pizza company where a user can choose one or more individual toppings (cheese, pepperoni, artichoke, anchovy, etc) and a size to order a pizza and see the final cost.
-//
-// Allow the user to choose toppings and size for the pizza theyd like to order.
-// Create a pizza object constructor with properties for toppings and size.
-// Create a prototype method for the cost of a pizza depending on the selections chosen. Use your own formula for this.
-
 describe('Pizza', function() {
   it("creates a pizza object with size, firstTopping, and toppings properties", function() {
     var testPizza = new Pizza("Large", "none");
@@ -14,9 +8,9 @@ describe('Pizza', function() {
 
   it("creates an array with toppings used for a pizza", function() {
     var testPizza = new Pizza("Large", "mushrooms");
-    var toppingOne = new Topping("olive", "Vegetable");
-    var toppingTwo = new Topping("peppers", "Vegetable");
-    var toppingThree = new Topping("sausage", "Meat");
+    var toppingOne = new Topping("olives", "Vegetable", false);
+    var toppingTwo = new Topping("peppers", "Vegetable", false);
+    var toppingThree = new Topping("sausage", "Meat", false);
     testPizza.toppings.push(toppingOne);
     testPizza.toppings.push(toppingTwo);
     testPizza.toppings.push(toppingThree);
@@ -30,9 +24,9 @@ describe('Pizza', function() {
     expect(testPizza.getTotalPrice()).to.equal(20);
   });
 
-  it("gets total price for a large pizza with mushrooms, olives, and sausage", function() {
+  it("gets total price for a large pizza with mushrooms, olives, peppers, and sausage", function() {
     var testPizza = new Pizza("Large", "mushrooms");
-    var toppingOne = new Topping("olive", "Vegetable");
+    var toppingOne = new Topping("olives", "Vegetable");
     var toppingTwo = new Topping("peppers", "Vegetable");
     var toppingThree = new Topping("sausage", "Meat");
     testPizza.toppings.push(toppingOne);
@@ -49,24 +43,4 @@ describe('Topping', function() {
     expect(testTopping.name).to.equal("mushrooms");
     expect(testTopping.type).to.equal("Vegetable");
   });
-// TODO: fix bug to calculate price of multiple toppings
-
-  // it("gets the price of multiple toppings", function() {
-  //   var testPizza = new Pizza("Large", "peppers");
-  //   var toppingOne = new Topping(testPizza, "mushrooms", "Vegetable");
-  //   var toppingTwo = new Topping(testPizza, "olive", "Vegetable");
-  //   var toppingThree = new Topping(testPizza, "peppers", "Vegetable");
-  //   var toppingFour = new Topping(testPizza, "sausage", "Meat");
-  //   var toppings = [];
-  //   var allToppings = toppings.push(toppingOne, toppingTwo, toppingThree, toppingFour);
-  //   // var toppings = toppings.push(topping);
-  //   expect(toppings.getAllToppingsPrice()).to.equal(8.5);
-  // });
-
-
-  // it("adds the cost of an additional topping", function() {
-  //   var testPizza = new Pizza("Large");
-  //   var testTopping = new Topping("mushrooms", "vegetable");
-  //   expect(testPizza.getPrice()).to.equal(17);
-  // });
 });
