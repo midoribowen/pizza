@@ -61,3 +61,22 @@ Pizza.prototype.getTotalPrice = function() {
   var totalPrice = basePrice + toppingsPrice;
   return totalPrice;
 }
+
+
+$(function() {
+  $("form#base-pizza").submit(function(event) {
+    event.preventDefault();
+    var sizeInput = $("select#size").val();
+    var firstToppingInput = $("select#first-topping").val();
+    var newPizza = new Pizza(sizeInput, firstToppingInput);
+
+    $("select#size").val("");
+    $("select#first-topping").val("");
+
+    $("#show-order").show();
+    $("#show-order h2").text(newPizza.size);
+    // $("ul#toppings").text("");
+    $("li#first-topping").text(newPizza.firstTopping);
+
+  });
+});
