@@ -8,9 +8,9 @@ describe('Pizza', function() {
 
   it("creates an array with toppings used for a pizza", function() {
     var testPizza = new Pizza("Large", "mushrooms");
-    var toppingOne = new Topping("olives", "Vegetable", false);
-    var toppingTwo = new Topping("peppers", "Vegetable", false);
-    var toppingThree = new Topping("sausage", "Meat", false);
+    var toppingOne = new Topping("black olives", "Vegetable");
+    var toppingTwo = new Topping("green peppers", "Vegetable");
+    var toppingThree = new Topping("italian sausage", "Meat");
     testPizza.toppings.push(toppingOne);
     testPizza.toppings.push(toppingTwo);
     testPizza.toppings.push(toppingThree);
@@ -26,9 +26,9 @@ describe('Pizza', function() {
 
   it("gets total price for a large pizza with mushrooms, olives, peppers, and sausage", function() {
     var testPizza = new Pizza("Large", "mushrooms");
-    var toppingOne = new Topping("olives", "Vegetable");
-    var toppingTwo = new Topping("peppers", "Vegetable");
-    var toppingThree = new Topping("sausage", "Meat");
+    var toppingOne = new Topping("black olives", "Vegetable");
+    var toppingTwo = new Topping("green peppers", "Vegetable");
+    var toppingThree = new Topping("italian sausage", "Meat");
     testPizza.toppings.push(toppingOne);
     testPizza.toppings.push(toppingTwo);
     testPizza.toppings.push(toppingThree);
