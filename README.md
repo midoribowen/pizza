@@ -9,22 +9,31 @@
 This is a pizza-making application written in Javascript.
 A user can choose one or more individual toppings (cheese, pepperoni, artichoke, anchovy, etc) and a size to order a pizza and see the final cost.
 
-This application was written as a code review of object oriented programming for the February 2016 Javascript course at Epicodus.
+This application was written as a code review of object oriented programming for Week Two of the February 2016 Javascript course at Epicodus.
 
 ## Setup/Installation Requirements
 
 * Install Pizza Parlor by cloning this repository
-*
-
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+* Open the index.html file in your browser
 
 ## Known Bugs
 
-* No known bugs
+CURRENT BUGS -
+* additional toppings are listed (as null) in orders when disabled is selected
+* when a second additional topping is added to the list, the order is deleted and only the additional topping shows
+
+* totalPrice is not running, but displaying as $0
+
+POSSIBLE FIXES FOR LISTED BUGS -
+* put functionality for adding additional toppings in separate column that shows when a base order is added
+* put add meat or add vegetable into separate forms within separate column
+* create rule that if select tag is set on disable, do not submit that tag?
+
+* totalPrice fix: set up calculate price method in ui? Make sure that data is being collected by this method.
 
 ## Technologies Used
 
-Application: Javascript and jQuery
+Application: Javascript, jQuery, Bootstrap
 Testing: Mocha and Chai
 
 ### License
