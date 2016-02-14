@@ -43,29 +43,39 @@
                 </select>
               </div>
 
-              <button type="submit" class="btn btn-danger">Select</button>
+
           </div>
 
           <div id="pizza-toppings">
               <h2>Select Additional Topping</h2>
-              <div class="form-group">
-                <label for="additional-topping">Add Additional Topping</label>
-                <select id="additional-topping" class="form-control" name="additional-title">
-                  <option value="Anchovies, Meat">Anchovies (SM: $1.50, MD: $2.00, LG: $2.50)</option>
-                  <option value="Chicken, Meat">Chicken (SM: $1.50, MD: $2.00, LG: $2.50)</option>
-                  <option value="Italian Sausage, Meat">Italian Sausage (SM: $1.50, MD: $2.00, LG: $2.50)</option>
-                  <option value="Pepperoni, Meat">Pepperoni (SM: $1.50, MD: $2.00, LG: $2.50)</option>
-                  <option value="Artichoke Hearts, Vegetable">Artichoke Hearts (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Black Olives, Vegetable">Black Olives (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Green Peppers, Vegetable">Green Peppers (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Jalapenos, Vegetable">Jalapenos (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Mushrooms, Vegetable">Mushrooms (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Onions, Vegetable">Onions (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Pineapple, Vegetable">Pineapple (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                  <option value="Tomatoes, Vegetable">Tomatoes (SM: $1.00, MD: $1.50, LG: $2.00)</option>
-                </select>
+              <div id="new-pizza-topping">
+                <div class="form-inline">
+                  <label for="meat-topping">Meat Toppings</label>
+                  <select id="meat-topping" class="form-control" name="meat-topping">
+                    <option disabled selected>(select a topping)</option>
+                    <option value="Anchovies">Anchovies</option>
+                    <option value="Chicken">Chicken </option>
+                    <option value="Italian Sausage">Italian Sausage</option>
+                    <option value="Pepperoni">Pepperoni</option>
+                  </select>
+                </div>
+                <div class="form-inline">
+                  <label for="vegetable-topping">Vegetable Toppings</label>
+                  <select id="vegetable-topping" class="form-control" name="vegetable-topping">
+                    <option disabled selected>(select a topping)</option>
+                    <option value="Artichoke Hearts">Artichoke Hearts</option>
+                    <option value="Black Olives">Black Olives</option>
+                    <option value="Green Peppers">Green Peppers</option>
+                    <option value="Jalapenos">Jalapenos</option>
+                    <option value="Mushrooms">Mushrooms</option>
+                    <option value="Onions">Onions</option>
+                    <option value="Pineapple">Pineapple</option>
+                    <option value="Tomatoes">Tomatoes</option>
+                  </select>
+                </div>
               </div>
-              <button type="submit" class="btn btn-warning">Add</button>
+              <button type="submit" class="btn btn-danger">Select Pizza</button>
+              <button type="submit" class="btn btn-warning">Add Topping</button>
             </form>
           </div>
 
@@ -73,7 +83,8 @@
 
         <div class="col-md-6">
           <div id="show-order">
-            <h2></h2>
+            <h2>Your Order:</h2>
+            <h3></h3>
             <p>Toppings:</p>
             <ul id="toppings">
             </ul>

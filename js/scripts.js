@@ -65,44 +65,46 @@ Pizza.prototype.getTotalPrice = function() {
 
 $(function() {
 
-// FORM#BASE-PIZZA NOT ADDING TOPPING PROPERLY
-// TO-TRY: PUT BASE-PIZZA INTO ON CLICK FUNCTION, SO THAT BASE-PIZZA APPEARS IN ORDER BUT CAN RECEIVE ADDITIONS
-// THEN: ADD SUBMIT BUTTON EVENT TO SUBMIT A PIZZA ORDER?
+// CURRENT BUGS -
+//                 - additional toppings are listed (as null) in orders when disabled is selected
+//                 - when a second additional topping is added to the list, the order is deleted and only the additional topping shows
+//                 - totalPrice is not running, but displaying as $0
+//
+// POSSIBLE FIXES -
+//                 - put functionality for adding additional toppings in separate column that shows when a base order is added
+//                 - put add meat or add vegetable into separate forms within separate column
+//                 - create rule that if select tag is set on disable, do not submit that tag?
+//                 - totalPrice fix: set up calculate price method in ui?
 
 
   $("form#base-pizza").submit(function(event) {
     event.preventDefault();
-    var toppings = [];
+    var totalPrice = 0;
     var sizeInput = $("select#size").val();
     var firstToppingInput = $("select#first-topping").val();
+    var toppings = [];
     var newPizza = new Pizza(sizeInput, firstToppingInput);
+
+    $("#new-pizza-topping").each(function() {
+      var meatToppingInput = $("select#meat-topping").val();
+      var meatTopping = new Topping(meatToppingInput, "Meat");
+      newPizza.toppings.push(meatTopping);
+      var vegetableToppingInput = $("select#vegetable-topping").val();
+      var vegetableTopping = new Topping(vegetableToppingInput, "Vegetable");
+      newPizza.toppings.push(vegetableTopping);
+    });
 
     $("select#size").val("");
     $("select#first-topping").val("");
 
     $("#show-order").show();
-    $("#show-order h2").text(newPizza.size);
+    $("#show-order h3").text(newPizza.size);
     $("ul#toppings").text("");
     $("ul#toppings").append("<li>" + newPizza.firstTopping + " (Free)</li>")
-
+    newPizza.toppings.forEach(function(topping) {
+      $("ul#toppings").append("<li>" + topping.name + ", " + topping.type + "</li>");
+    });
+    $("#show-order").append("<h4>" + "Total: $" + totalPrice.toFixed(2) + "</h4>");
   });
-
-
-  // $("form#add-topping").submit(function() {
-  //   event.preventDefault();
-  //   var toppings = [];
-  //   $("#add-topping").each(function() {
-  //     var additionalToppingInput = $("select#additional-topping").val();
-  //     var topping = new Topping(additionalToppingInput);
-  //     newPizza.toppings.push(topping);
-  //   });
-  //
-  //   $("select#additional-topping").val("");
-  //
-  //   $("ul#toppings").text("");
-  //   newPizza.toppings.forEach(function(topping) {
-  //     $("ul#toppings").append("<li>" + topping.name + "</li>")
-  //   });
-  // });
 
 });
