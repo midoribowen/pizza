@@ -67,19 +67,20 @@ $(function() {
 
 // CURRENT BUGS -
 //                 - additional toppings are listed (as null) in orders when disabled is selected
-//                 - when a second additional topping is added to the list, the order is deleted and only the additional topping shows
-//                 - totalPrice is not running, but displaying as $0
+//                 - when a second additional topping is added to the list, the order is deleted and only the additional toppings show
+//                 - if pizza is changed, updated totalPrice does not overwrite previous totalPrice
+
 //
 // POSSIBLE FIXES -
 //                 - put functionality for adding additional toppings in separate column that shows when a base order is added
 //                 - put add meat or add vegetable into separate forms within separate column
 //                 - create rule that if select tag is set on disable, do not submit that tag?
-//                 - totalPrice fix: set up calculate price method in ui?
+
 
 
   $("form#base-pizza").submit(function(event) {
     event.preventDefault();
-    var totalPrice = 0;
+    var getTotalPrice = 0;
     var sizeInput = $("select#size").val();
     var firstToppingInput = $("select#first-topping").val();
     var toppings = [];
@@ -104,7 +105,7 @@ $(function() {
     newPizza.toppings.forEach(function(topping) {
       $("ul#toppings").append("<li>" + topping.name + ", " + topping.type + "</li>");
     });
-    $("#show-order").append("<h4>" + "Total: $" + totalPrice.toFixed(2) + "</h4>");
+    $("#show-order").append("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");
   });
 
 });
