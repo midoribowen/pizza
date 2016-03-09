@@ -20,9 +20,8 @@ This application was written as a code review of object oriented programming for
 
 CURRENT BUGS -
 * additional toppings are listed (as null) in orders when disabled is selected
-* when a second additional topping is added to the list, the order is deleted and only the additional topping shows
-
-* totalPrice is not running, but displaying as $0
+* when a second additional topping is added to the list, the order is deleted and only the additional toppings show
+* if pizza is changed, updated totalPrice does not overwrite previous totalPrice
 
 POSSIBLE FIXES FOR LISTED BUGS -
 * put functionality for adding additional toppings in separate column that shows when a base order is added
