@@ -21,6 +21,7 @@ This application was written as a code review of object oriented programming for
 CURRENT BUGS -
 * additional toppings are listed (as null) in orders when disabled is selected
 * when a second additional topping is added to the list, the order is deleted and only the additional toppings show
+* Cannot add only one additional topping
 * if pizza is changed, updated totalPrice does not overwrite previous totalPrice
 
 POSSIBLE FIXES FOR LISTED BUGS -

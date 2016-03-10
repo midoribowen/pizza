@@ -29,9 +29,9 @@ Pizza.prototype.getTotalPrice = function() {
   if (this.size === "Small") {
     basePrice += smallPrice;
     this.toppings.forEach(function(topping) {
-      if (topping.type === "Vegetable") {
+      if ((topping.type === "Vegetable") && (topping.name !== null)) {
         toppingsPrice += smallVegetableToppingPrice;
-      } else if (topping.type === "Meat") {
+      } else if ((topping.type === "Meat") && (topping.name !== null)) {
         toppingsPrice += smallMeatToppingPrice;
       }
     });
@@ -40,9 +40,9 @@ Pizza.prototype.getTotalPrice = function() {
   if (this.size === "Medium") {
     basePrice += mediumPrice;
     this.toppings.forEach(function(topping) {
-      if (topping.type === "Vegetable") {
+      if ((topping.type === "Vegetable") && (topping.name !== null)) {
         toppingsPrice += mediumVegetableToppingPrice;
-      } else if (topping.type === "Meat") {
+      } else if ((topping.type === "Meat") && (topping.name !== null)) {
         toppingsPrice += mediumMeatToppingPrice;
       }
     });
@@ -50,9 +50,9 @@ Pizza.prototype.getTotalPrice = function() {
   if (this.size === "Large") {
     basePrice += largePrice;
     this.toppings.forEach(function(topping) {
-      if (topping.type === "Vegetable") {
+      if ((topping.type === "Vegetable") && (topping.name !== null)) {
         toppingsPrice += largeVegetableToppingPrice;
-      } else if (topping.type === "Meat") {
+      } else if ((topping.type === "Meat") && (topping.name !== null)) {
         toppingsPrice += largeMeatToppingPrice;
       }
     });
@@ -68,13 +68,14 @@ $(function() {
 // CURRENT BUGS -
 //                 - additional toppings are listed (as null) in orders when disabled is selected
 //                 - when a second additional topping is added to the list, the order is deleted and only the additional toppings show
+//                 - Cannot add only one additional topping
 //                 - if pizza is changed, updated totalPrice does not overwrite previous totalPrice
 
 //
-// POSSIBLE FIXES -
-//                 - put functionality for adding additional toppings in separate column that shows when a base order is added
-//                 - put add meat or add vegetable into separate forms within separate column
-//                 - create rule that if select tag is set on disable, do not submit that tag?
+// FIXES -
+//                 - separated forms and click listeners for initial pizza and toppings
+//                 - checked for null topping names in display and in price calc logic
+//                 - stick price in span after show-order
 
 
 
@@ -86,13 +87,25 @@ $(function() {
     var toppings = [];
     var newPizza = new Pizza(sizeInput, firstToppingInput);
 
-    $("#new-pizza-topping").each(function() {
+
+    $("form#additional-toppings").submit(function(event) {
+      event.preventDefault();
       var meatToppingInput = $("select#meat-topping").val();
       var meatTopping = new Topping(meatToppingInput, "Meat");
       newPizza.toppings.push(meatTopping);
+      if (meatTopping.name !== null) {
+        $("ul#toppings").append("<li>" + meatTopping.name + ", " + meatTopping.type + "</li>");
+      }
       var vegetableToppingInput = $("select#vegetable-topping").val();
       var vegetableTopping = new Topping(vegetableToppingInput, "Vegetable");
       newPizza.toppings.push(vegetableTopping);
+      if (vegetableTopping.name !== null) {
+        $("ul#toppings").append("<li>" + vegetableTopping.name + ", " + vegetableTopping.type + "</li>");
+      }
+
+      $("#price").html("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");
+      $("select#meat-topping").val("");
+      $("select#vegetable-topping").val("");
     });
 
     $("select#size").val("");
@@ -101,11 +114,8 @@ $(function() {
     $("#show-order").show();
     $("#show-order h3").text(newPizza.size);
     $("ul#toppings").text("");
-    $("ul#toppings").append("<li>" + newPizza.firstTopping + " (Free)</li>")
-    newPizza.toppings.forEach(function(topping) {
-      $("ul#toppings").append("<li>" + topping.name + ", " + topping.type + "</li>");
-    });
-    $("#show-order").append("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");
+    $("ul#toppings").append("<li>" + newPizza.firstTopping + " (Free)</li>");
+    $("#price").append("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");
   });
 
 });
