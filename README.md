@@ -19,23 +19,22 @@ This application was written as a code review of object oriented programming for
 ## Known Bugs
 
 PREVIOUS BUGS -
-                - additional toppings are listed (as null) in orders when disabled is selected
-                - when a second additional topping is added to the list, the order is deleted and only the additional toppings show
-                - Cannot add only one additional topping
+* additional toppings are listed (as null) in orders when disabled is selected
+* when a second additional topping is added to the list, the order is deleted and only the additional toppings show
+* Cannot add only one additional topping
 
-                   FIX: - separated forms for base-pizza and additional-toppings and nested additional-toppings submit listener inside #base-pizza submit listener
-                        EG: -JQuery `$("form#additional-toppings").submit(function(event)` submit listener nested inside `$("form#base-pizza").submit(function(event)` submit listener
-                   FIX: - checked for null topping names in jQuery and only push them to toppings array if name value is not null
-                        EG: -JQuery `if (meatTopping.name !== null) {
-                                      newPizza.toppings.push(meatTopping);
-                                      $("ul#toppings").append("<li>" + meatTopping.name + ", " + meatTopping.type + "</li>");
-                                    }`
+  FIX: - separated forms for base-pizza and additional-toppings and nested additional-toppings submit listener inside #base-pizza submit listener
+    EG: -JQuery `$("form#additional-toppings").submit(function(event)` submit listener nested inside `$("form#base-pizza").submit(function(event)` submit listener
+  FIX: - checked for null topping names in jQuery and only push them to toppings array if name value is not null
+    EG: -JQuery `if (meatTopping.name !== null) {
+                  newPizza.toppings.push(meatTopping);
+                  $("ul#toppings").append("<li>" + meatTopping.name + ", " + meatTopping.type + "</li>");
+                  }`
 
-                - if pizza is changed, updated totalPrice does not overwrite previous totalPrice
-                
-                   FIX: - append price in #price span after show-order
-                       EG: - `$("#price").html("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");`
-                           - `<span id="price"></span>`
+* if pizza is changed, updated totalPrice does not overwrite previous totalPrice
+
+  FIX: - append price in #price span after show-order
+    EG: - `$("#price").html("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");` and `<span id="price"></span>`
 
 ## Technologies Used
 
