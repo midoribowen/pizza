@@ -18,18 +18,24 @@ This application was written as a code review of object oriented programming for
 
 ## Known Bugs
 
-CURRENT BUGS -
-* additional toppings are listed (as null) in orders when disabled is selected
-* when a second additional topping is added to the list, the order is deleted and only the additional toppings show
-* Cannot add only one additional topping
-* if pizza is changed, updated totalPrice does not overwrite previous totalPrice
+PREVIOUS BUGS -
+                - additional toppings are listed (as null) in orders when disabled is selected
+                - when a second additional topping is added to the list, the order is deleted and only the additional toppings show
+                - Cannot add only one additional topping
 
-POSSIBLE FIXES FOR LISTED BUGS -
-* put functionality for adding additional toppings in separate column that shows when a base order is added
-* put add meat or add vegetable into separate forms within separate column
-* create rule that if select tag is set on disable, do not submit that tag?
+                   FIX: - separated forms for base-pizza and additional-toppings and nested additional-toppings submit listener inside #base-pizza submit listener
+                        EG: -JQuery `$("form#additional-toppings").submit(function(event)` submit listener nested inside `$("form#base-pizza").submit(function(event)` submit listener
+                   FIX: - checked for null topping names in jQuery and only push them to toppings array if name value is not null
+                        EG: -JQuery `if (meatTopping.name !== null) {
+                                      newPizza.toppings.push(meatTopping);
+                                      $("ul#toppings").append("<li>" + meatTopping.name + ", " + meatTopping.type + "</li>");
+                                    }`
 
-* totalPrice fix: set up calculate price method in ui? Make sure that data is being collected by this method.
+                - if pizza is changed, updated totalPrice does not overwrite previous totalPrice
+                
+                   FIX: - append price in #price span after show-order
+                       EG: - `$("#price").html("<h4>" + "Total: $" + newPizza.getTotalPrice().toFixed(2) + "</h4>");`
+                           - `<span id="price"></span>`
 
 ## Technologies Used
 
